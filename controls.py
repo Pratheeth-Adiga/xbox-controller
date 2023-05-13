@@ -1,10 +1,12 @@
 import pygame
+import time
+from macros import *
+import pyautogui
 
+control_dic = {"KeyboardInterrupt_macro" : KeyboardInterrupt()}
 pygame.init()
 pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-print(joysticks)
-
+# ins = arr()
 while True:
     if pygame.joystick.get_count() == 0:
         break
@@ -21,10 +23,10 @@ while True:
             BUTTON_LEFT_JOYSTICK = pygame.joystick.Joystick(0).get_button(8)
             BUTTON_RIGHT_JOYSTICK = pygame.joystick.Joystick(0).get_button(9)
 
-            if(BUTTON_A):
-                print("Pressed A")
+            if(BUTTON_A): 
+                print("")
             if(BUTTON_B):
-                print("Pressed B")           
+                pyautogui.hotkey("ctrl","c")          
             if(BUTTON_X):
                 print("Pressed x")
             if(BUTTON_Y):
@@ -34,9 +36,9 @@ while True:
             if(BUTTON_RIGHT_SHOULDER):
                 print("right shoulder")
             if(BUTTON_BACK):
-                print("back")
+                pyautogui.press(ins[1])
             if(BUTTON_NEXT):
-                print("next")
+                pyautogui.press(ins[0])
             if(BUTTON_LEFT_JOYSTICK):
                 print("ljb")
             if(BUTTON_RIGHT_JOYSTICK):
@@ -50,10 +52,14 @@ while True:
             LEFT_TRIGGER = pygame.joystick.Joystick(0).get_axis(4)
             RIGHT_TRIGGER = pygame.joystick.Joystick(0).get_axis(5)
 
-            if(LEFT_JOYSTICK_X):
-                print(pygame.joystick.Joystick(0).get_axis(0))
-            if(LEFT_JOYSTICK_Y):
-                print(pygame.joystick.Joystick(0).get_axis(1))    
+            if(LEFT_JOYSTICK_X < -0.7):
+                pyautogui.hotkey("fn","f2")
+            if(LEFT_JOYSTICK_X > 0.7):
+                pyautogui.hotkey("fn","f3")
+            if(LEFT_JOYSTICK_Y > 0.7):
+                pyautogui.press(ins[10])
+            if(LEFT_JOYSTICK_Y < -0.7):
+                pyautogui.press(ins[9])  
             if(RIGHT_JOYSTICK_X):
                 print(pygame.joystick.Joystick(0).get_axis(2))
             if(RIGHT_JOYSTICK_Y):
@@ -70,13 +76,14 @@ while True:
             HAT_RIGHT = (pygame.joystick.Joystick(0).get_hat(0))[0] == 1
 
             if(HAT_UP):
-                print("up")
+                pyautogui.press(ins[2])
             if(HAT_DOWN):
-                print("down")
+                pyautogui.keyDown(ins[3])
             if(HAT_LEFT):
-                print("left")
+                pyautogui.keyDown(ins[4])
             if(HAT_RIGHT):
-                print("right")
+                pyautogui.keyDown(ins[5])
+                
             
                 
     
