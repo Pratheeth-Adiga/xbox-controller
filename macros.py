@@ -24,14 +24,21 @@ def screenshot():
 def profileswitch():
     i = i + 1
 
-def mouseLeft(x):
-    pyautogui.moveRel(-x)
+def mouseMove(x,y):
+    max_speed = 8
+    normal_speed = 4
+    if(x > 0.5 or x < -0.5):
+        x *= max_speed
+    else:
+        x *= normal_speed
+    if(y > 0.5 or y < -0.5):
+        y *= max_speed
+    else:
+        y *= normal_speed
+    pyautogui.moveRel(x,y)
 
-def mouseRight(x):
-    print(pyautogui.position())
 
-def mouseUp():
-    print(pyautogui.position())
 
-def mouseDown():
-    print(pyautogui.position())
+
+
+    

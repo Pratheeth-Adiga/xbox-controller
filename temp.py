@@ -4,11 +4,33 @@ import pygame
 
 pygame.init()
 pygame.joystick.init()
-for event in pygame.event.get():
-    if event.type == pygame.JOYAXISMOTION:
-        a = pygame.joystick.Joystick(0).get_axis(0)
-        print(a)
-# print(pyautogui.KEYBOARD_KEYS)
+joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+print(joysticks)
+
+while True:
+    if pygame.joystick.get_count() == 0:
+        break
+    for event in pygame.event.get():
+        if event.type == pygame.JOYAXISMOTION:
+            LEFT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(0)
+            LEFT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(1)
+            RIGHT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(2)
+            RIGHT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(3)
+            LEFT_TRIGGER = pygame.joystick.Joystick(0).get_axis(4)
+            RIGHT_TRIGGER = pygame.joystick.Joystick(0).get_axis(5)
+
+            if(LEFT_JOYSTICK_X != -3.0517578125e-05):
+                print(pygame.joystick.Joystick(0).get_axis(0))
+            if(LEFT_JOYSTICK_Y != -3.0517578125e-05):
+                print(pygame.joystick.Joystick(0).get_axis(1))    
+            if(RIGHT_JOYSTICK_X != -3.0517578125e-05):
+                print(pygame.joystick.Joystick(0).get_axis(2))
+            if(RIGHT_JOYSTICK_Y != -3.0517578125e-05):
+                print(pygame.joystick.Joystick(0).get_axis(3))
+            if(LEFT_TRIGGER != -1):
+                print(pygame.joystick.Joystick(0).get_axis(4))
+            if(RIGHT_TRIGGER != -1):
+                print(pygame.joystick.Joystick(0).get_axis(5))
 
 ['\t', '\n', '\r', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+',
   ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', 

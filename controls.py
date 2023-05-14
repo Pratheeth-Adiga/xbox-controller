@@ -1,12 +1,13 @@
 import pygame
-import time
 from macros import *
-import pyautogui
+import time
 
-control_dic = {"KeyboardInterrupt_macro" : KeyboardInterrupt()}
+pyautogui.FAILSAFE = False
 pygame.init()
 pygame.joystick.init()
-# ins = arr()
+joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+print(joysticks)
+
 while True:
     if pygame.joystick.get_count() == 0:
         break
@@ -23,10 +24,10 @@ while True:
             BUTTON_LEFT_JOYSTICK = pygame.joystick.Joystick(0).get_button(8)
             BUTTON_RIGHT_JOYSTICK = pygame.joystick.Joystick(0).get_button(9)
 
-            if(BUTTON_A): 
-                print("")
+            if(BUTTON_A):
+                print("Pressed A")
             if(BUTTON_B):
-                pyautogui.hotkey("ctrl","c")          
+                print("Pressed B")           
             if(BUTTON_X):
                 print("Pressed x")
             if(BUTTON_Y):
@@ -36,9 +37,9 @@ while True:
             if(BUTTON_RIGHT_SHOULDER):
                 print("right shoulder")
             if(BUTTON_BACK):
-                pyautogui.press(ins[1])
+                print("back")
             if(BUTTON_NEXT):
-                pyautogui.press(ins[0])
+                print("next")
             if(BUTTON_LEFT_JOYSTICK):
                 print("ljb")
             if(BUTTON_RIGHT_JOYSTICK):
@@ -52,40 +53,41 @@ while True:
             LEFT_TRIGGER = pygame.joystick.Joystick(0).get_axis(4)
             RIGHT_TRIGGER = pygame.joystick.Joystick(0).get_axis(5)
 
-            if(LEFT_JOYSTICK_X < -0.7):
-                pyautogui.hotkey("fn","f2")
-            if(LEFT_JOYSTICK_X > 0.7):
-                pyautogui.hotkey("fn","f3")
-            if(LEFT_JOYSTICK_Y > 0.7):
-                pyautogui.press(ins[10])
-            if(LEFT_JOYSTICK_Y < -0.7):
-                pyautogui.press(ins[9])  
-            if(RIGHT_JOYSTICK_X):
-                print(pygame.joystick.Joystick(0).get_axis(2))
-            if(RIGHT_JOYSTICK_Y):
-                print(pygame.joystick.Joystick(0).get_axis(3))
+            if RIGHT_JOYSTICK_X != 0 or RIGHT_JOYSTICK_Y != 0:
+                if(RIGHT_JOYSTICK_Y != -3.0517578125e-05 and RIGHT_JOYSTICK_X != -3.0517578125e-05):
+                    mouseMove(RIGHT_JOYSTICK_X,RIGHT_JOYSTICK_Y)
+            if(LEFT_JOYSTICK_X):
+                print(pygame.joystick.Joystick(0).get_axis(0))
+            if(LEFT_JOYSTICK_Y):
+                print(pygame.joystick.Joystick(0).get_axis(1))
             if(LEFT_TRIGGER != -1):
                 print(pygame.joystick.Joystick(0).get_axis(4))
             if(RIGHT_TRIGGER != -1):
                 print(pygame.joystick.Joystick(0).get_axis(5))
 
         if event.type == pygame.JOYHATMOTION:
-            HAT_UP = (pygame.joystick.Joystick(0).get_hat(0))[1] == 1
-            HAT_DOWN = (pygame.joystick.Joystick(0).get_hat(0))[1] == -1
-            HAT_LEFT = (pygame.joystick.Joystick(0).get_hat(0))[0] == -1
-            HAT_RIGHT = (pygame.joystick.Joystick(0).get_hat(0))[0] == 1
-
-            if(HAT_UP):
-                pyautogui.press(ins[2])
-            if(HAT_DOWN):
-                pyautogui.keyDown(ins[3])
-            if(HAT_LEFT):
-                pyautogui.keyDown(ins[4])
-            if(HAT_RIGHT):
-                pyautogui.keyDown(ins[5])
-                
+            HAT_TOP = (pygame.joystick.Joystick(0).get_hat(0)) == (0,1)
+            HAT_BOTTOM = (pygame.joystick.Joystick(0).get_hat(0)) == (0,-1)
+            HAT_LEFT = (pygame.joystick.Joystick(0).get_hat(0)) == (-1,0)
+            HAT_RIGHT = (pygame.joystick.Joystick(0).get_hat(0)) == (1,0)
+            HAT_TOP_LEFT = (pygame.joystick.Joystick(0).get_hat(0)) == (-1,1)
+            HAT_TOP_RIGHT = (pygame.joystick.Joystick(0).get_hat(0)) == (1,1)
+            HAT_BOTTOM_LEFT = (pygame.joystick.Joystick(0).get_hat(0)) == (-1,-1)
+            HAT_BOTTOM_RIGHT = (pygame.joystick.Joystick(0).get_hat(0)) == (1,-1)
             
-                
-    
-    
-        
+            if(HAT_TOP):
+                print("up")
+            if(HAT_BOTTOM):
+                print("down")
+            if(HAT_LEFT):
+                print("left")
+            if(HAT_RIGHT):
+                print("right")
+            if(HAT_TOP_LEFT):
+                print("top left")
+            if(HAT_TOP_RIGHT):
+                print("top right")
+            if(HAT_BOTTOM_LEFT):
+                print("bottom left")
+            if(HAT_BOTTOM_RIGHT):
+                print("bottom right")
