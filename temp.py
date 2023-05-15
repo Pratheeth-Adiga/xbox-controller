@@ -1,38 +1,70 @@
+id = 0
+PROFILE_NAME = "General"
+A = "enter"
+B = "keyboardInterrupt"
+X = "click"
+Y = "screenshot"
+START = "win"
+BACK = "esc"
+LJ = "volumemute"
+RJ = "doubleClick"
+LB = "switchProfile"
+RB = "tab"
+LJ_XN = "left"
+LJ_XP = "right"
+LJ_YN = "up"
+LJ_YP = "down"
+RJ_XN = "mouseMove"
+RJ_XP = "mouseMove" 
+RJ_YN = "mouseMove"             
+RJ_YP = "mouseMove"
+LT = "alt"
+RT = "shift"
+TOP = "brightnessIncrease"
+BOTTOM = "brightnessDecrease"
+LEFT = "volumedown"
+RIGHT = "volumeup"
+TOP_LEFT = "["
+TOP_RIGHT = "]"
+BOTTOM_LEFT = "b"
+BOTTOM_RIGHT = "f"
+
 #{id},{PROFILE_NAME},{A},{B},{X},{Y},{START},{BACK},{LJ},{RJ},{LB},{RB},{LJ_XN},{LJ_XP},{LJ_YN},{LJ_YP},{RJ_XN},{RJ_XP},{RJ_YN},{RJ_YP},{LT},{RT},{TOP},{BOTTOM},{LEFT},{RIGHT},{TOP_LEFT},{TOP_RIGHT},{BOTTOM_LEFT},{BOTTOM_RIGHT}
 import pyautogui
+from macros import *
 import pygame
 
-pygame.init()
-pygame.joystick.init()
-joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
-print(joysticks)
+# pygame.init()
+# pygame.joystick.init()
+# joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_count())]
+# print(joysticks)
 
-while True:
-    if pygame.joystick.get_count() == 0:
-        break
-    for event in pygame.event.get():
-        if event.type == pygame.JOYAXISMOTION:
-            LEFT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(0)
-            LEFT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(1)
-            RIGHT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(2)
-            RIGHT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(3)
-            LEFT_TRIGGER = pygame.joystick.Joystick(0).get_axis(4)
-            RIGHT_TRIGGER = pygame.joystick.Joystick(0).get_axis(5)
+# while True:
+#     if pygame.joystick.get_count() == 0:
+#         break
+#     for event in pygame.event.get():
+#         if event.type == pygame.JOYAXISMOTION:
+#             LEFT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(0)
+#             LEFT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(1)
+#             RIGHT_JOYSTICK_X = pygame.joystick.Joystick(0).get_axis(2)
+#             RIGHT_JOYSTICK_Y = pygame.joystick.Joystick(0).get_axis(3)
+#             LEFT_TRIGGER = pygame.joystick.Joystick(0).get_axis(4)
+#             RIGHT_TRIGGER = pygame.joystick.Joystick(0).get_axis(5)
 
-            if(LEFT_JOYSTICK_X != -3.0517578125e-05):
-                print(pygame.joystick.Joystick(0).get_axis(0))
-            if(LEFT_JOYSTICK_Y != -3.0517578125e-05):
-                print(pygame.joystick.Joystick(0).get_axis(1))    
-            if(RIGHT_JOYSTICK_X != -3.0517578125e-05):
-                print(pygame.joystick.Joystick(0).get_axis(2))
-            if(RIGHT_JOYSTICK_Y != -3.0517578125e-05):
-                print(pygame.joystick.Joystick(0).get_axis(3))
-            if(LEFT_TRIGGER != -1):
-                print(pygame.joystick.Joystick(0).get_axis(4))
-            if(RIGHT_TRIGGER != -1):
-                print(pygame.joystick.Joystick(0).get_axis(5))
+#             if(LEFT_JOYSTICK_X != -3.0517578125e-05):
+#                 print(pygame.joystick.Joystick(0).get_axis(0))
+#             if(LEFT_JOYSTICK_Y != -3.0517578125e-05):
+#                 print(pygame.joystick.Joystick(0).get_axis(1))    
+#             if(RIGHT_JOYSTICK_X != -3.0517578125e-05):
+#                 print(pygame.joystick.Joystick(0).get_axis(2))
+#             if(RIGHT_JOYSTICK_Y != -3.0517578125e-05):
+#                 print(pygame.joystick.Joystick(0).get_axis(3))
+#             if(LEFT_TRIGGER != -1):
+#                 print(pygame.joystick.Joystick(0).get_axis(4))
+#             if(RIGHT_TRIGGER != -1):
+#                 print(pygame.joystick.Joystick(0).get_axis(5))
 
-['\t', '\n', '\r', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+',
+a = ['\t', '\n', '\r', ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+',
   ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', 
 ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', 'a', 'b', 'c', 
 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
@@ -51,3 +83,11 @@ while True:
 'return', 'right', 'scrolllock', 'select', 'separator', 'shift', 'shiftleft', 'shiftright', 
 'sleep', 'space', 'stop', 'subtract', 'tab', 'up', 'volumedown', 'volumemute', 'volumeup', 
 'win', 'winleft', 'winright', 'yen', 'command', 'option', 'optionleft', 'optionright']
+
+dict = {"mouseMove_macro" : "mouseMove",
+"brightnessIncrease_macro" : "brightnessIncrease",
+"brightnessDecrease_macro" : "brightnessDecrease",
+"screenshot_macro" : "screenshot"}
+
+fun = "mouseMove"
+globals()[fun](10,10)
