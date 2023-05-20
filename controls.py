@@ -1,5 +1,6 @@
-import pygame
 from macros import *
+import time
+import pygame
 from getFromDB import getProfiles
 
 pygame.init()
@@ -9,16 +10,20 @@ joysticks = [pygame.joystick.Joystick(x) for x in range(pygame.joystick.get_coun
 data = getProfiles()
 
 i = 0
-def switchProfile():
-    i += 1
+def switchProfile():        
+    global i
+    i = i + 1
     i = i%len(data)
 
 def fun1(x,vert = None,hor = None):
     if(pyautogui.isValidKey(data[i][x])):
-        pyautogui.press(data[i][x])
+        if(data[i][x] == "shift" or data[i][x] == "alt"):
+            pyautogui.keyDown(data[i][x])
+        else:
+            pyautogui.press(data[i][x])
     else:
         if(vert == None or hor == None):
-            globals()[data[i][x]]
+            globals()[data[i][x]]() 
         else:
             globals()[data[i][x]](vert,hor)
 
@@ -110,3 +115,4 @@ while True:
                 fun1(28)
             if(HAT_BOTTOM_RIGHT):
                 fun1(29)
+

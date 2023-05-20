@@ -20,8 +20,8 @@ def screenshot():
     pyautogui.hotkey('win','prtsc')
 
 def mouseMove(x,y):
-    max_speed = 8
-    normal_speed = 4
+    max_speed = 10
+    normal_speed = 5
     if(x > 0.5 or x < -0.5):
         x *= max_speed
     else:
@@ -31,8 +31,6 @@ def mouseMove(x,y):
     else:
         y *= normal_speed
     pyautogui.moveRel(x,y)
-
-brightnessIncrease()
 
 
 
