@@ -1,5 +1,4 @@
 from macros import *
-import time
 import pygame
 from getFromDB import getProfiles
 
